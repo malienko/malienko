@@ -1,0 +1,4 @@
+- 👋 Hi, I’m @malienko
+- 👀 I’m interested in the intersection between Python 🐍 and SEO 💻
+- 🌱 I’m currently learning Machine Learning 🤖
+- 📫 You can reach me at antonmalienko@gmail.com
