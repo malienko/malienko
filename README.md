@@ -13,7 +13,7 @@ A personal website built with [Astro](https://astro.build) showcasing SEO expert
 
 ## 🛠️ Technology Stack
 
-- **Framework:** Astro 5.1.5
+- **Framework:** Astro 4.16
 - **Language:** TypeScript (strict mode)
 - **Styling:** Vanilla CSS
 - **Deployment:** GitHub Pages
