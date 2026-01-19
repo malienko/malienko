@@ -1,0 +1,189 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Anton Malienko - Search Engine Optimization Consultant based in Montreal, Canada' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <h1 class="site-title">Anton Malienko</h1>
+        <p class="site-subtitle">Search Engine Optimization Consultant</p>
+        <nav class="main-nav">
+          <a href="https://www.linkedin.com/in/malienko/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://twitter.com/_Malienko_" target="_blank" rel="noopener noreferrer">Twitter</a>
+          <a href="mailto:antonmalienko@gmail.com">Email</a>
+          <a href="/publications">Publications</a>
+          <a href="/case-studies">Case Studies</a>
+          <a href="/projects">Projects</a>
+          <span class="lang-selector">EN</span>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
+
+<style is:global>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: #000000;
+    background-color: #ffffff;
+  }
+
+  body {
+    min-height: 100vh;
+    padding: 2rem 1rem;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .site-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .site-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    border-bottom: 3px solid #17a2b8;
+    display: inline-block;
+    padding-bottom: 0.25rem;
+  }
+
+  .site-subtitle {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    color: #000000;
+  }
+
+  .main-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .main-nav a {
+    color: #000000;
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+
+  .main-nav a:hover {
+    text-decoration: underline;
+  }
+
+  .lang-selector {
+    background-color: #808080;
+    color: white;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.85rem;
+  }
+
+  main {
+    margin-top: 2rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  a {
+    color: #0066cc;
+    text-decoration: underline;
+  }
+
+  a:hover {
+    color: #0052a3;
+  }
+
+  ul, ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+  }
+
+  th, td {
+    border: 1px solid #000000;
+    padding: 0.75rem;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f5f5f5;
+    font-weight: 700;
+  }
+
+  @media (max-width: 768px) {
+    .site-title {
+      font-size: 2rem;
+    }
+
+    .main-nav {
+      gap: 1rem;
+    }
+
+    body {
+      padding: 1rem 0.5rem;
+    }
+  }
+</style>
