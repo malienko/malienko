@@ -1,0 +1,169 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Malienko - SEO Expert & Web Developer">
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Hi, I'm Malienko</h1>
+        <p class="hero-subtitle">SEO Expert & Web Developer</p>
+        <p class="hero-description">
+          I specialize in search engine optimization and building modern web applications.
+          I help businesses improve their online visibility and create exceptional digital experiences.
+        </p>
+        <div class="hero-cta">
+          <a href="/case-studies" class="btn">View Case Studies</a>
+          <a href="/projects" class="btn btn-secondary">See Projects</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section about">
+    <div class="container">
+      <h2>About Me</h2>
+      <p>
+        With years of experience in SEO and web development, I've helped numerous businesses
+        achieve their digital goals. My approach combines technical expertise with strategic
+        thinking to deliver measurable results.
+      </p>
+    </div>
+  </section>
+
+  <section class="section features">
+    <div class="container">
+      <h2>What I Do</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>SEO Optimization</h3>
+          <p>
+            Data-driven SEO strategies that improve search rankings and drive organic traffic
+            to your website.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Web Development</h3>
+          <p>
+            Modern, responsive websites built with the latest technologies and best practices
+            for performance and accessibility.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Technical Audits</h3>
+          <p>
+            Comprehensive technical SEO audits to identify and fix issues that may be holding
+            your site back.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    padding: var(--spacing-xl) 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+  }
+
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-md);
+    opacity: 0.9;
+  }
+
+  .hero-description {
+    font-size: 1.125rem;
+    margin-bottom: var(--spacing-md);
+    opacity: 0.9;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: var(--spacing-sm);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-secondary {
+    background-color: transparent;
+    border: 2px solid white;
+  }
+
+  .btn-secondary:hover {
+    background-color: white;
+    color: var(--color-primary);
+  }
+
+  .section {
+    padding: var(--spacing-xl) 0;
+  }
+
+  .about {
+    background-color: var(--color-bg-secondary);
+  }
+
+  .about p {
+    font-size: 1.125rem;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    color: var(--color-text-light);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+  }
+
+  .card {
+    background-color: var(--color-bg);
+    padding: var(--spacing-md);
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-border);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  .card h3 {
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .card p {
+    color: var(--color-text-light);
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 2rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+    }
+
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
