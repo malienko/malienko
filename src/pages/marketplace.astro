@@ -273,7 +273,7 @@ import Layout from '../layouts/Layout.astro';
 
     if (!uploadInput || !processBtn) return;
 
-    processBtn.addEventListener('click', () => {
+    processBtn.addEventListener('click', async () => {
       const file = uploadInput.files?.[0];
 
       if (!file) {
@@ -286,16 +286,66 @@ import Layout from '../layouts/Layout.astro';
         initMap();
       }
 
-      // For now, load sample data
-      // In production, this would process the uploaded image
-      processBtn.textContent = 'Processing...';
+      // Process the uploaded image with AI
+      processBtn.textContent = 'Processing with AI...';
       processBtn.disabled = true;
 
-      setTimeout(() => {
-        loadSampleData();
+      try {
+        const formData = new FormData();
+        formData.append('image', file);
+
+        const response = await fetch('/malienko/api/process-marketplace', {
+          method: 'POST',
+          body: formData
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to process image');
+        }
+
+        const data = await response.json();
+
+        if (data.items && data.items.length > 0) {
+          // Clear existing markers
+          markers.forEach(m => m.remove());
+          markers = [];
+
+          // Add markers for extracted items
+          data.items.forEach(item => {
+            addMarker(item);
+          });
+
+          // Display items list
+          displayItems(data.items);
+
+          // Show map
+          const mapContainer = document.getElementById('map-container');
+          if (mapContainer) {
+            mapContainer.style.display = 'block';
+          }
+
+          // Fix map size and fit bounds
+          setTimeout(() => {
+            if (map) {
+              map.invalidateSize();
+              if (markers.length > 0) {
+                const group = window.L.featureGroup(markers);
+                map.fitBounds(group.getBounds().pad(0.1));
+              }
+            }
+          }, 100);
+
+          alert(`Successfully extracted ${data.items.length} items!`);
+        } else {
+          alert('No items found in the image. Try a clearer screenshot.');
+        }
+      } catch (error) {
+        console.error('Error processing image:', error);
+        alert('Failed to process image. Please try again or use demo data.');
+      } finally {
         processBtn.textContent = 'Process Screenshot';
         processBtn.disabled = false;
-      }, 1000);
+      }
     });
 
     // Allow loading sample data without upload for demo
