@@ -111,8 +111,9 @@ import Layout from '../layouts/Layout.astro';
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<script>
-  let map;
+<script is:inline>
+  // @ts-nocheck
+  let map = null;
   let markers = [];
 
   // Sample data structure for marketplace items
@@ -149,24 +150,26 @@ import Layout from '../layouts/Layout.astro';
 
   function initMap() {
     // Initialize map centered on Montreal
-    map = L.map('map').setView([45.5017, -73.5673], 11);
+    map = window.L.map('map').setView([45.5017, -73.5673], 11);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    window.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       maxZoom: 19
     }).addTo(map);
   }
 
   function addMarker(item) {
+    if (!map) return;
+
     // Create custom icon
-    const icon = L.divIcon({
+    const icon = window.L.divIcon({
       className: 'custom-marker',
       html: `<div class="marker-pin"></div>`,
       iconSize: [30, 30],
       iconAnchor: [15, 30]
     });
 
-    const marker = L.marker([item.lat, item.lng], { icon })
+    const marker = window.L.marker([item.lat, item.lng], { icon })
       .addTo(map)
       .bindPopup(`
         <div class="marker-popup">
@@ -188,6 +191,8 @@ import Layout from '../layouts/Layout.astro';
 
   function displayItems(items) {
     const itemsList = document.getElementById('items-list');
+    if (!itemsList) return;
+
     itemsList.innerHTML = '<h2>Items List</h2>';
 
     items.forEach(item => {
@@ -203,6 +208,8 @@ import Layout from '../layouts/Layout.astro';
       `;
 
       card.addEventListener('click', () => {
+        if (!map) return;
+
         const marker = markers.find(m =>
           m.getLatLng().lat === item.lat &&
           m.getLatLng().lng === item.lng
@@ -231,11 +238,14 @@ import Layout from '../layouts/Layout.astro';
     displayItems(sampleItems);
 
     // Show map
-    document.getElementById('map-container').style.display = 'block';
+    const mapContainer = document.getElementById('map-container');
+    if (mapContainer) {
+      mapContainer.style.display = 'block';
+    }
 
     // Fit bounds to show all markers
-    if (markers.length > 0) {
-      const group = L.featureGroup(markers);
+    if (map && markers.length > 0) {
+      const group = window.L.featureGroup(markers);
       map.fitBounds(group.getBounds().pad(0.1));
     }
   }
@@ -245,8 +255,10 @@ import Layout from '../layouts/Layout.astro';
     const uploadInput = document.getElementById('screenshot-upload');
     const processBtn = document.getElementById('process-btn');
 
+    if (!uploadInput || !processBtn) return;
+
     processBtn.addEventListener('click', () => {
-      const file = uploadInput.files[0];
+      const file = uploadInput.files?.[0];
 
       if (!file) {
         alert('Please select a screenshot first');
@@ -281,7 +293,11 @@ import Layout from '../layouts/Layout.astro';
       }
       loadSampleData();
     });
-    document.querySelector('.upload-section').appendChild(demoBtn);
+
+    const uploadSection = document.querySelector('.upload-section');
+    if (uploadSection) {
+      uploadSection.appendChild(demoBtn);
+    }
   });
 </script>
 
