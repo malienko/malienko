@@ -33,6 +33,5 @@ I leverage programming and machine learning to enhance SEO processes, by automat
 I'm always open and happy to meet interesting people. I'm based in Montreal, Canada - don't hesitate to message me for a coffee and a chat if you're around!
 
 - **Email:** antonmalienko@gmail.com
-- **Twitter:** [@_Malienko_](https://twitter.com/_Malienko_)
-- **LinkedIn:** [linkedin.com/in/malienko](https://www.linkedin.com/in/malienko/)
-- **Website:** [malienko.github.io/malienko](https://malienko.github.io/malienko/)
+- **LinkedIn:** [linkedin.com/in/anton-malienko](https://www.linkedin.com/in/anton-malienko/)
+- **Website:** [malienko.github.io/malienko](https://www.malienko.com/)
